@@ -3,6 +3,10 @@ Api
 
 Helpers to create an Api for laravel 4.2
 
+[![Latest Stable Version](https://poser.pugx.org/devfactory/api/v/stable.svg)](https://packagist.org/packages/devfactory/api)
+[![Total Downloads](https://poser.pugx.org/devfactory/api/downloads.svg)](https://packagist.org/packages/devfactory/api)
+[![License](https://poser.pugx.org/devfactory/api/license.svg)](https://packagist.org/packages/devfactory/api)
+
 
 ##How to setup
 
@@ -37,18 +41,22 @@ alias => array(
  php artisan config:publish devfactory/api
 ```
 
-
 ##How to use api
 in your route
+the param {format} are not mandatory
 
 ```php
-
 Route::group(array('prefix' => 'v1'), function()
+{
+    Route::get('foo.{format}', 'ApiV1\FooController@foo');
+    Route::post('bar.{format}', 'ApiV1\FooController@bar');
+});
+
+Route::group(array('prefix' => '{format}/v1'), function()
 {
     Route::get('foo', 'ApiV1\FooController@foo');
     Route::post('bar', 'ApiV1\FooController@bar');
 });
-
 ```
 
 In you controller you can use
@@ -67,6 +75,6 @@ or
 ##To call your service you can use the Facade
 
 ```php
-  API::get('v1/foo', array('foo' => 'bar'));
-  API::post('v1/bar', array('foo' => 'bar'));
+  API::get('v1/foo.json', array('foo' => 'bar'));
+  API::post('v1/bar.xml', array('foo' => 'bar'));
 ```
