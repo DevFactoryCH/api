@@ -1,0 +1,25 @@
+{
+  "name": "devfactory/api",
+  "description": "RESTful API package",
+  "keywords": ["Laravel 4", "Laravel", "RESTful", "REST", "API"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alcindo Da Costa",
+      "email": "alcindo.dacosta@devfactory.ch"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "illuminate/support": "4.2.*"
+  },
+  "require-dev": {
+    "mockery/mockery": "0.7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Devfactory\\Api\\": "src/"
+    }
+  },
+  "minimum-stability": "stable"
+}
