@@ -46,7 +46,20 @@ Class Api {
    * Convert an array to a defined format
    */
   protected function format($data) {
-    $result = Formatter::make($data, 'array');
+    $result = NULL;
+
+    if(is_array($data)){
+      $result = Formatter::make($data, 'array');
+    }
+
+    if(is_object($data)){
+      $result = Formatter::make($data, 'object');
+    }
+
+    if(is_null($result)) {
+      $result = Formatter::make(array($data), 'array');
+    }
+
     return call_user_func(array($result, 'to' . ucfirst($this->format)));
   }
 
@@ -61,11 +74,15 @@ Class Api {
    * Retrieve the format parameter and override the default format
    */
   protected function determineFormat(){
+    $format = NULL;
+
     // Get the current route
     $route = Route::getCurrentRoute();
 
-    // Get the format parameter
-    $format = $route->getParameter('format');
+    if($route){
+      // Get the format parameter
+      $format = $route->getParameter('format');
+    }
 
     // Check if it's a valid format
     if(in_array($format, $this->valid_format)){
