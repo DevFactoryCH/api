@@ -5,6 +5,8 @@ use Devfactory\Api\Provider\ServiceInterface;
 use Response;
 use Route;
 use App;
+use Log;
+use Config;
 use SoapBox\Formatter\Formatter;
 
 Class Api {
@@ -15,9 +17,14 @@ Class Api {
   protected $service;
 
   /**
+   * Debug mode
+   */
+  protected $debug = false;
+
+  /**
    * Default format
    */
-  protected $format = 'json';
+  protected $format = NULL;
 
   /**
    * Valid format
@@ -40,6 +47,8 @@ Class Api {
 
   public function __construct(ServiceInterface $service) {
     $this->service = $service;
+    $this->format = Config::get('api::default_format', 'json');
+    $this->debug = Config::get('api::debug', false);
   }
 
   /**
@@ -91,6 +100,16 @@ Class Api {
     }
   }
 
+  protected function log($data, $status, $headers) {
+    if(!$this->debug) {
+      return;
+    }
+
+    Log::info(print_r($data, true), array('context' => 'API : data'));
+    Log::info(print_r($status, true), array('context' => 'API : status'));
+    Log::info(print_r($headers, true), array('context' => 'API : headers'));
+  }
+
   /**
    * Retun the response
    *
@@ -101,6 +120,7 @@ Class Api {
    * @return
    */
   public function createResponse($data, $status = 200, $headers = array()) {
+
     // Find if a format has been setted
     $this->determineFormat();
 
@@ -116,6 +136,8 @@ Class Api {
     foreach ($headers as $key => $value){
       $response->header($key, $value);
     }
+
+    $this->log($result, $status, $response->headers->all());
 
     return $response;
   }

@@ -3,7 +3,7 @@ Api
 
 Helpers to create an API for laravel 4.2
 
-This module handle `json` `xml` as response
+This module handle `json` and `xml` as response
 
 [![Latest Stable Version](https://poser.pugx.org/devfactory/api/v/stable.svg)](https://packagist.org/packages/devfactory/api)
 [![Total Downloads](https://poser.pugx.org/devfactory/api/downloads.svg)](https://packagist.org/packages/devfactory/api)
