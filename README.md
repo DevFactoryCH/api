@@ -1,7 +1,9 @@
 Api
 ======
 
-Helpers to create an Api for laravel 4.2
+Helpers to create an API for laravel 4.2
+
+This module handle `json` `xml` as response
 
 [![Latest Stable Version](https://poser.pugx.org/devfactory/api/v/stable.svg)](https://packagist.org/packages/devfactory/api)
 [![Total Downloads](https://poser.pugx.org/devfactory/api/downloads.svg)](https://packagist.org/packages/devfactory/api)
@@ -43,7 +45,8 @@ alias => array(
 
 ##How to use api
 in your route
-the param {format} are not mandatory
+
+the param `{format}` are not mandatory
 
 ```php
 Route::group(array('prefix' => 'v1'), function()
