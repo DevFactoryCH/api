@@ -80,4 +80,5 @@ or
 ```php
   API::get('v1/foo.json', array('foo' => 'bar'));
   API::post('v1/bar.xml', array('foo' => 'bar'));
+  API::put('v1/bar.xml', array('foo' => 'bar'));
 ```

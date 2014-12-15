@@ -155,4 +155,11 @@ Class Api {
   public function post($url, $data = array()) {
     return $this->service->post($url, $data);
   }
+
+  /**
+   * Do a PUT call to a internal url
+   */
+  public function put($url, $data = array()) {
+    return $this->service->put($url, $data);
+  }
 }

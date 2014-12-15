@@ -18,6 +18,21 @@ class RequestProvider implements ServiceInterface {
   }
 
   /**
+   * Make a PUT query
+   *
+   * @param data
+   *
+   * @return
+   */
+  public function put($url, $params = null) {
+    $this->params = $params;
+    $this->method = 'PUT';
+    $this->url = $url;
+
+    return $this->request();
+  }
+
+  /**
    * Make a POST query
    *
    * @param data

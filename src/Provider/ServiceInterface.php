@@ -6,4 +6,6 @@ interface ServiceInterface {
 
   public function get($url, $data);
 
+  public function put($url, $data);
+
 }
