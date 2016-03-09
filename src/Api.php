@@ -105,9 +105,7 @@ Class Api {
       return;
     }
 
-    Log::info(print_r($data, true), array('context' => 'API : data'));
-    Log::info(print_r($status, true), array('context' => 'API : status'));
-    Log::info(print_r($headers, true), array('context' => 'API : headers'));
+    Log::info('API Response: <br><br>Headers:'. print_r($headers, TRUE) .'<br>JSON:<br>'. print_r($data, true) .'<br><br>Status:<br>'. print_r($status, true) .'<br><br>', array('context' => 'API : data'));
   }
 
   /**
